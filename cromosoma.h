@@ -4,7 +4,8 @@
 
 #include <iostream>
 #include <vector>
-#include <random>
+#include "random.h"
+#include <algorithm>
 
 using namespace std;
 

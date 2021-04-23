@@ -6,10 +6,9 @@
 
 Cromosoma::Cromosoma(int size, int subsize){
 
-    int genes = 0;
-
-    for (int i = 0; i < size; ++i){
-
-    }
+    int added = 0;
+    genes.resize(subsize, 1);
+    genes.resize(size, 0);
+    random_shuffle(genes.begin(), genes.end());
 
 }
