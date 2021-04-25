@@ -16,9 +16,12 @@ using namespace std;
 
 class Cromosoma {
 
+    public:
+    double fitness;
     vector<int> genes;
-    Cromosoma(int size, int subsize);
 
+    Cromosoma();
+    double calcularFitness();
 };
 
 

@@ -3,12 +3,28 @@
 //
 
 #include "cromosoma.h"
+#include "main.cpp"
 
-Cromosoma::Cromosoma(int size, int subsize){
+Cromosoma::Cromosoma(){
 
-    int added = 0;
-    genes.resize(subsize, 1);
-    genes.resize(size, 0);
+    genes.resize(tam_cromosoma, 1);
+    genes.resize(subtam_cromosoma, 0);
     random_shuffle(genes.begin(), genes.end());
+    fitness = calcularFitness();
 
+}
+
+double Cromosoma::calcularFitness() {
+
+        double fitness = 0.0;
+
+        for (int i = 0; i < genes.size(); ++i){
+            if (genes[i] == 1){
+                for (int j = i+1; j < genes.size(); ++j){
+                    fitness += matrizDistancias(i,j);
+                }
+            }
+        }
+
+        return fitness;
 }
