@@ -11,9 +11,6 @@
 
 using namespace std;
 
-extern int tam_cromosoma;
-extern int subtam_cromosoma;
-extern Eigen::MatrixXd matrizDistancias;
 
 int main() {
 
@@ -21,8 +18,6 @@ int main() {
     // Probaremos que obtenemos los resultados deseados.
 
     cout.setf(ios::fixed);
-
-    matrizDistancias = generarMatrizDistancias("tablas/MDG-c_20_n3000_m600.txt", subtam_cromosoma);
 
     int semilla = leerDeArchivo("semilla.txt");
     Set_random(semilla);

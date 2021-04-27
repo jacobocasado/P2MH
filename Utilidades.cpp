@@ -117,3 +117,7 @@ double calcularCosteTotal(Eigen::ArrayXi vectorSolucion,Eigen::MatrixXd &matrizD
 
     return distanciaTotal;
 }
+
+extern int tam_cromosoma;
+extern int subtam_cromosoma;
+extern Eigen::MatrixXd matrizDistancias = generarMatrizDistancias("tablas/MDG-c_20_n3000_m600.txt", subtam_cromosoma);

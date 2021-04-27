@@ -19,9 +19,18 @@ class Cromosoma {
     public:
     double fitness;
     vector<int> genes;
+    bool necesitaEvaluacion;
 
     Cromosoma();
+
+    double calcularContribucion(int posicion);
     double calcularFitness();
+    Cromosoma & cruceUniforme(Cromosoma &otro);
+    Cromosoma & crucePosicion(Cromosoma &otro);
+    void reparar();
+
+private:
+
 };
 
 

@@ -11,9 +11,15 @@
 class Poblacion {
 public:
 
-    Poblacion(int size);
     vector<Cromosoma> cromosomas;
-    Cromosoma torneoBinario();
+
+    Poblacion(int size);
+
+    Cromosoma & torneoBinario();
+
+private:
+
+
 
 };
 
