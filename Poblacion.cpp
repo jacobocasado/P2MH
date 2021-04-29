@@ -7,6 +7,8 @@
 
 Poblacion::Poblacion(int size){
 
+    prob_mutacion = cromosomas.size() * tam_cromosoma;
+
     for (int i = 0; i < size; ++i){
         cromosomas.push_back(Cromosoma());
     }

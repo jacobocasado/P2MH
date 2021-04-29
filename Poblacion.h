@@ -6,15 +6,13 @@
 #define P2MH_POBLACION_H
 
 #include "cromosoma.h"
-#include "main.cpp"
-
-
+#include "utilidades.h"
 
 class Poblacion {
 public:
 
     vector<Cromosoma> cromosomas;
-    double prob_mutacion = cromosomas.size() * tam_cromosoma;
+    double prob_mutacion;
 
     Poblacion(int size);
 

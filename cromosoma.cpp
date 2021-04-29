@@ -3,8 +3,8 @@
 //
 
 #include "cromosoma.h"
-#include "main.cpp"
-#include "utilidades.cpp"
+#include "utilidades.h"
+
 
 Cromosoma::Cromosoma(){
 
