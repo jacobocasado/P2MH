@@ -4,6 +4,7 @@
 
 #include "cromosoma.h"
 #include "main.cpp"
+#include "utilidades.cpp"
 
 Cromosoma::Cromosoma(){
 

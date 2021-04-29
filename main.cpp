@@ -7,10 +7,16 @@
 #include "cromosoma.h"
 #include "Eigen/Dense"
 #include "random.h"
-#include "Utilidades.cpp"
+#include "utilidades.cpp"
+
+#ifndef MAIN
+#define MAIN
 
 using namespace std;
 
+extern int subtam_cromosoma;
+extern Eigen::MatrixXd matrizDistancias;
+extern int tam_cromosoma;
 
 int main() {
 
@@ -22,6 +28,11 @@ int main() {
     int semilla = leerDeArchivo("semilla.txt");
     Set_random(semilla);
 
+    matrizDistancias = generarMatrizDistancias("tablas/MDG-c_20_n3000_m600.txt", subtam_cromosoma);
+    tam_cromosoma = matrizDistancias.cols();
+
 
 
 }
+
+#endif
