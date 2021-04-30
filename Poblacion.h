@@ -8,16 +8,20 @@
 #include "cromosoma.h"
 #include "utilidades.h"
 
+
 class Poblacion {
 public:
 
     vector<Cromosoma> cromosomas;
-    double prob_mutacion;
+    double prob_mutacion = 0.1/(50 * tam_cromosoma);;
 
     Poblacion(int size);
+    Poblacion();
 
-    Cromosoma & torneoBinario();
-
+    Cromosoma torneoBinario();
+    void mutarCromosomas();
+    void AGGUniforme();
+    void addCromosoma(Cromosoma cromosoma);
 
 
 private:

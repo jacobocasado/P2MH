@@ -139,3 +139,4 @@ Cromosoma & Cromosoma::crucePosicion(Cromosoma &otro) {
     return cruce;
 
 }
+

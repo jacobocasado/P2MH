@@ -28,6 +28,7 @@ class Cromosoma {
     Cromosoma & cruceUniforme(Cromosoma &otro);
     Cromosoma & crucePosicion(Cromosoma &otro);
     void reparar();
+    void mutar();
 
 private:
 

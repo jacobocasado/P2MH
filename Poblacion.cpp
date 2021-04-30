@@ -3,11 +3,13 @@
 //
 
 #include "Poblacion.h"
+#include "random.h"
 
+Poblacion::Poblacion() {
+
+}
 
 Poblacion::Poblacion(int size){
-
-    prob_mutacion = cromosomas.size() * tam_cromosoma;
 
     for (int i = 0; i < size; ++i){
         cromosomas.push_back(Cromosoma());
@@ -15,7 +17,7 @@ Poblacion::Poblacion(int size){
 
 }
 
-Cromosoma & Poblacion::torneoBinario(){
+Cromosoma Poblacion::torneoBinario(){
 
         int pos1 = Randint(0, cromosomas.size() - 1);
         int pos2 = Randint(0, cromosomas.size() - 1);
@@ -24,7 +26,7 @@ Cromosoma & Poblacion::torneoBinario(){
             pos2 = Randint(0, cromosomas.size() - 1);
         }
 
-        static Cromosoma nuevo;
+        Cromosoma nuevo;
 
         if (cromosomas[pos1].fitness > cromosomas[pos2].fitness)
             nuevo = cromosomas[pos1];
@@ -33,4 +35,30 @@ Cromosoma & Poblacion::torneoBinario(){
 
         return nuevo;
 };
+
+void Poblacion::mutarCromosomas() {
+
+    int numMutaciones = prob_mutacion * cromosomas.size();
+
+    for (int i = 0; i < numMutaciones; ++i){
+
+        int cromosoma_a_mutar = Randint(0, cromosomas.size() - 1);
+        int gen_1 = Randint(0, tam_cromosoma - 1);
+        int gen_2 = Randint(0, tam_cromosoma - 1);
+
+        while ((cromosomas[cromosoma_a_mutar].genes[gen_1] == cromosomas[cromosoma_a_mutar].genes[gen_2]))
+            int gen_2 = Randint(0, tam_cromosoma - 1);
+
+        swap(cromosomas[cromosoma_a_mutar].genes[gen_1], cromosomas[cromosoma_a_mutar].genes[gen_2]);
+
+        cromosomas[cromosoma_a_mutar].necesitaEvaluacion = true;
+
+    }
+}
+
+void Poblacion::addCromosoma(Cromosoma &cromosoma) {
+    cromosomas.push_back(cromosoma);
+}
+
+
 
