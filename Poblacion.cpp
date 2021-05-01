@@ -2,7 +2,7 @@
 // Created by jcasado on 25/4/21.
 //
 
-#include "Poblacion.h"
+#include "poblacion.h"
 #include "random.h"
 
 Poblacion::Poblacion() {

@@ -30,7 +30,7 @@ double Cromosoma::calcularFitness() {
         return fitness;
 }
 
-double Cromosoma::calcularContribucion(int posicion){
+double Cromosoma::calcularContribucionEn(int posicion){
 
     double contribucion = 0;
 
@@ -53,7 +53,7 @@ void Cromosoma::reparar() {
 
         for (int i = 0; i < genes.size(); ++i){
             if (genes[i] == 1){
-                double contribucion = calcularContribucion(i);
+                double contribucion = calcularContribucionEn(i);
                 if (contribucion > mayor_contribucion){
                     pos = i;
                     mayor_contribucion = contribucion;
@@ -70,7 +70,7 @@ void Cromosoma::reparar() {
 
         for (int i = 0; i < genes.size(); ++i){
             if (genes[i] == 0){
-                double contribucion = calcularContribucion(i);
+                double contribucion = calcularContribucionEn(i);
                 if (contribucion > mayor_contribucion){
                     pos = i;
                     mayor_contribucion = contribucion;
@@ -107,7 +107,7 @@ Cromosoma & Cromosoma::cruceUniforme(Cromosoma &otro){
 Cromosoma & Cromosoma::crucePosicion(Cromosoma &otro) {
 
     static Cromosoma cruce;
-    fill(cruce.genes.begin(), cruce.genes.end(), -1);
+    fill(cruce.genes.begin(), cruce.genes.end(), NULL);
     vector<int> genes_sobrantes;
 
     for (int i = 0; i < genes.size(); ++i){
@@ -127,7 +127,7 @@ Cromosoma & Cromosoma::crucePosicion(Cromosoma &otro) {
             random_shuffle(genes_sobrantes.begin(), genes_sobrantes.end());
 
             for (int i = 0; i < cruce.genes.size(); ++i){
-                if (cruce.genes[i] == -1){
+                if (cruce.genes[i] == NULL){
                     cruce.genes[i] = genes_sobrantes.back();
                     genes_sobrantes.pop_back();
                 }
@@ -140,3 +140,6 @@ Cromosoma & Cromosoma::crucePosicion(Cromosoma &otro) {
 
 }
 
+bool Cromosoma::operator==(const & Cromosoma otro) {
+    return (this->genes == otro.genes);
+}

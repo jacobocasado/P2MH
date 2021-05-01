@@ -23,12 +23,14 @@ class Cromosoma {
 
     Cromosoma();
 
-    double calcularContribucion(int posicion);
+    double calcularContribucionEn(int posicion);
     double calcularFitness();
     Cromosoma & cruceUniforme(Cromosoma &otro);
     Cromosoma & crucePosicion(Cromosoma &otro);
     void reparar();
     void mutar();
+
+    bool operator==(const &Cromosoma otro);
 
 private:
 

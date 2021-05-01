@@ -3,7 +3,7 @@
 #include <chrono>
 #include <set>
 #include <vector>
-#include "Poblacion.h"
+#include "poblacion.h"
 #include "cromosoma.h"
 #include "Eigen/Dense"
 #include "random.h"
@@ -13,19 +13,18 @@
 
 using namespace std;
 
-int main() {
-
-    // Lo primero que debemos hacer es obtener los datos de la matriz dada en los archivos de tablas.
-    // Probaremos que obtenemos los resultados deseados.
+int main(int argc, char * argv[]) {
 
     cout.setf(ios::fixed);
 
     int semilla = leerDeArchivo("semilla.txt");
     Set_random(semilla);
 
-    string archivo = "tablas/MDG-c_20_n3000_m600.txt";
+    string archivo = argv[1];
     matrizDistancias = generarMatrizDistancias(archivo, subtam_cromosoma);
     tam_cromosoma = matrizDistancias.cols();
+
+    Poblacion nueva(50);
 
 
 

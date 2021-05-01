@@ -9,11 +9,11 @@
 #include "utilidades.h"
 
 
-class Poblacion {
+class poblacion {
 public:
 
     vector<Cromosoma> cromosomas;
-    double prob_mutacion = 0.1/(50 * tam_cromosoma);;
+    double prob_mutacion = 0.1/(50 * tam_cromosoma);
 
     Poblacion(int size);
     Poblacion();
@@ -22,6 +22,8 @@ public:
     void mutarCromosomas();
     void AGGUniforme();
     void addCromosoma(Cromosoma cromosoma);
+
+
 
 
 private:
