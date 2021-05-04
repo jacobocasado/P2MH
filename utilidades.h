@@ -16,8 +16,7 @@ extern int subtam_cromosoma;
 extern Eigen::MatrixXd matrizDistancias;
 extern int tam_cromosoma;
 extern int tam_poblacion;
-// todo meterlo en utilidades.cpp
-// todo
+
 
 
 #endif //P2MH_UTILIDADES_H

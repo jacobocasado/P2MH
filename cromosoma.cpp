@@ -4,13 +4,25 @@
 
 #include "cromosoma.h"
 #include "utilidades.h"
+#include <random>
+#include <chrono>
 
 
 Cromosoma::Cromosoma(){
 
-    genes.resize(tam_cromosoma, 1);
-    genes.resize(subtam_cromosoma, 0);
-    random_shuffle(genes.begin(), genes.end());
+    genes.resize(tam_cromosoma, 0);
+
+    for (int i = 0; i < subtam_cromosoma; ++i){
+
+        int posicion = Randint(0, tam_cromosoma - 1);
+
+        while (genes[posicion] == 1)
+            posicion = Randint(0, tam_cromosoma - 1);
+
+        genes[posicion] = 1;
+
+    }
+
     fitness = calcularFitness();
 
 }
@@ -22,10 +34,13 @@ double Cromosoma::calcularFitness() {
         for (int i = 0; i < genes.size(); ++i){
             if (genes[i] == 1){
                 for (int j = i+1; j < genes.size(); ++j){
-                    fitness += matrizDistancias(i,j);
+                    if (genes[j] == 1)
+                        fitness += matrizDistancias(i,j);
                 }
             }
         }
+
+        this->fitness = fitness;
         necesitaEvaluacion = false;
         return fitness;
 }
@@ -83,9 +98,9 @@ void Cromosoma::reparar() {
 
 }
 
-Cromosoma & Cromosoma::cruceUniforme(Cromosoma &otro){
+Cromosoma Cromosoma::cruceUniforme(Cromosoma &otro){
 
-    static Cromosoma cruce;
+    Cromosoma cruce;
 
     for (int i = 0; i < genes.size(); ++i){
         if (genes[i] == otro.genes[i]){
@@ -104,34 +119,39 @@ Cromosoma & Cromosoma::cruceUniforme(Cromosoma &otro){
     return cruce;
 }
 
-Cromosoma & Cromosoma::crucePosicion(Cromosoma &otro) {
+Cromosoma Cromosoma::crucePosicion(Cromosoma &otro) {
 
-    static Cromosoma cruce;
-    fill(cruce.genes.begin(), cruce.genes.end(), NULL);
-    vector<int> genes_sobrantes;
+    Cromosoma cruce;
+    fill(cruce.genes.begin(), cruce.genes.end(), -1);
 
-    for (int i = 0; i < genes.size(); ++i){
 
-        if (genes[i] == otro.genes[i]){
+    for (int i = 0; i < genes.size(); ++i) {
+        if (genes[i] == otro.genes[i]) {
             cruce.genes[i] = genes[i];
         }
 
-        else{
+    }
 
-            for (int i = 0; i < cruce.genes.size(); ++i){
-                if (cruce.genes[i] != NULL){
-                    genes_sobrantes.push_back(genes[i]);
-                }
-            }
+    int random = Randint(0,1);
+    Cromosoma * padre;
+    if (random == 1)
+        padre = this;
+    else
+        padre = &otro;
 
-            random_shuffle(genes_sobrantes.begin(), genes_sobrantes.end());
+    vector<int> genes_sobrantes;
+    for (int i = 0; i < padre->genes.size(); ++i){
+        if (cruce.genes[i] == -1){
+            genes_sobrantes.push_back(genes[i]);
+        }
+    }
 
-            for (int i = 0; i < cruce.genes.size(); ++i){
-                if (cruce.genes[i] == NULL){
-                    cruce.genes[i] = genes_sobrantes.back();
-                    genes_sobrantes.pop_back();
-                }
-            }
+    random_shuffle(genes_sobrantes.begin(), genes_sobrantes.end());
+
+    for (int i = 0; i < cruce.genes.size(); ++i){
+        if (cruce.genes[i] == -1){
+            cruce.genes[i] = genes_sobrantes.back();
+            genes_sobrantes.pop_back();
         }
     }
 
@@ -142,4 +162,12 @@ Cromosoma & Cromosoma::crucePosicion(Cromosoma &otro) {
 
 bool Cromosoma::operator==(const Cromosoma &otro) {
     return (this->genes == otro.genes);
+}
+
+Cromosoma & Cromosoma::operator=(const Cromosoma &otro) {
+    this->genes = otro.genes;
+    this->necesitaEvaluacion = otro.necesitaEvaluacion;
+    this->fitness = otro.fitness;
+
+    return *this;
 }

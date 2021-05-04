@@ -5,6 +5,9 @@
 #include "Poblacion.h"
 #include "random.h"
 
+int num_evaluaciones = 0;
+double prob_mutacion = 0.1/(50 * tam_cromosoma);
+
 Poblacion::Poblacion() {
 
 }
@@ -14,8 +17,6 @@ Poblacion::Poblacion(int size){
     for (int i = 0; i < size; ++i){
         cromosomas.push_back(Cromosoma());
     }
-
-
 }
 
 Cromosoma Poblacion::torneoBinario(){
@@ -61,5 +62,46 @@ void Poblacion::addCromosoma(Cromosoma cromosoma) {
     cromosomas.push_back(cromosoma);
 }
 
+Cromosoma & Poblacion::buscarMejorCromosoma() {
 
+    int mejorPosicion = 0;
+    double mejorValor = 0.0;
 
+    for (int i = 0; i < cromosomas.size(); ++i){
+        if (cromosomas[i].fitness > mejorValor){
+            mejorPosicion = i;
+            mejorValor = cromosomas[i].fitness;
+        }
+    }
+
+    return cromosomas[mejorPosicion];
+}
+
+Cromosoma & Poblacion::buscarPeorCromosoma() {
+
+    int peorPosicion = 0;
+    double peorValor = cromosomas[0].fitness;
+
+    for (int i = 0; i < cromosomas.size(); ++i){
+        if (cromosomas[i].fitness < peorValor){
+            peorPosicion = i;
+            peorValor = cromosomas[i].fitness;
+        }
+    }
+
+    return cromosomas[peorPosicion];
+}
+
+Poblacion & Poblacion::operator=(const Poblacion otro) {
+    this->cromosomas = otro.cromosomas;
+    return *this;
+}
+
+void Poblacion::reevaluar() {
+    for (int i = 0; i < this->cromosomas.size(); ++i){
+        if (cromosomas[i].necesitaEvaluacion){
+            cromosomas[i].calcularFitness();
+            num_evaluaciones++;
+        }
+    }
+}

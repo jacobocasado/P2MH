@@ -8,10 +8,11 @@
 
 #include "Poblacion.h"
 
-class geneticos {
+class Geneticos {
 
 public:
-    void AGGUniforme(Poblacion &poblacion);
+    static Cromosoma & AGGUniforme(int tam_poblacion);
+    static Cromosoma & AGGPosicion(int tam_poblacion);
 
 };
 

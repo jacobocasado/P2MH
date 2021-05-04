@@ -8,23 +8,27 @@
 #include "cromosoma.h"
 #include "utilidades.h"
 
+extern int num_evaluaciones;
+extern double prob_mutacion;
 
 class Poblacion {
+
 public:
 
     vector<Cromosoma> cromosomas;
-    double prob_mutacion = 0.1/(50 * tam_cromosoma);
+
 
     Poblacion(int size);
     Poblacion();
 
     Cromosoma torneoBinario();
     void mutarCromosomas();
-    void AGGUniforme();
     void addCromosoma(Cromosoma cromosoma);
+    void reevaluar();
+    Cromosoma & buscarMejorCromosoma();
+    Cromosoma & buscarPeorCromosoma();
 
-
-
+    Poblacion & operator=(const Poblacion otro);
 
 private:
 
