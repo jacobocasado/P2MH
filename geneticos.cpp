@@ -3,13 +3,15 @@
 //
 
 #include "geneticos.h"
+#include "Poblacion.h"
 
 void geneticos::AGGUniforme(Poblacion & poblacion) {
 
-        const int evaluaciones = 100000;
+        const int EVALS = 100000;
         int num_cruces = 0.7 * poblacion.cromosomas.size();
+        int evaluaciones = 0;
 
-        for (int i = 0; i < evaluaciones; ++i){
+        while (evaluaciones < EVALS){
             Poblacion padres;
 
             for (int i = 0; i < poblacion.cromosomas.size(); ++i){

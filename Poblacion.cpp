@@ -2,7 +2,7 @@
 // Created by jcasado on 25/4/21.
 //
 
-#include "poblacion.h"
+#include "Poblacion.h"
 #include "random.h"
 
 Poblacion::Poblacion() {
@@ -14,6 +14,7 @@ Poblacion::Poblacion(int size){
     for (int i = 0; i < size; ++i){
         cromosomas.push_back(Cromosoma());
     }
+
 
 }
 
@@ -56,7 +57,7 @@ void Poblacion::mutarCromosomas() {
     }
 }
 
-void Poblacion::addCromosoma(Cromosoma &cromosoma) {
+void Poblacion::addCromosoma(Cromosoma cromosoma) {
     cromosomas.push_back(cromosoma);
 }
 

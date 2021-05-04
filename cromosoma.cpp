@@ -93,10 +93,10 @@ Cromosoma & Cromosoma::cruceUniforme(Cromosoma &otro){
         }
         else
             if (Randint(0,1) == 0){
-                cruce.genes[i] == genes[i];
+                cruce.genes[i] = genes[i];
             }
             else
-                cruce.genes[i] == otro.genes[i];
+                cruce.genes[i] = otro.genes[i];
     }
 
     cruce.reparar();
@@ -119,7 +119,7 @@ Cromosoma & Cromosoma::crucePosicion(Cromosoma &otro) {
         else{
 
             for (int i = 0; i < cruce.genes.size(); ++i){
-                if (cruce.genes[i] != -1){
+                if (cruce.genes[i] != NULL){
                     genes_sobrantes.push_back(genes[i]);
                 }
             }
@@ -140,6 +140,6 @@ Cromosoma & Cromosoma::crucePosicion(Cromosoma &otro) {
 
 }
 
-bool Cromosoma::operator==(const & Cromosoma otro) {
+bool Cromosoma::operator==(const Cromosoma &otro) {
     return (this->genes == otro.genes);
 }

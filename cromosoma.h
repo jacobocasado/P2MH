@@ -30,7 +30,7 @@ class Cromosoma {
     void reparar();
     void mutar();
 
-    bool operator==(const &Cromosoma otro);
+    bool operator==(const Cromosoma &otro);
 
 private:
 

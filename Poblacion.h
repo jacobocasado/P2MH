@@ -9,7 +9,7 @@
 #include "utilidades.h"
 
 
-class poblacion {
+class Poblacion {
 public:
 
     vector<Cromosoma> cromosomas;
