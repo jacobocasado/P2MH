@@ -13,7 +13,8 @@ class Geneticos {
 public:
     static Cromosoma & AGGUniforme(int tam_poblacion);
     static Cromosoma & AGGPosicion(int tam_poblacion);
-
+    static Cromosoma & AGEUniforme(int tam_poblacion);
+    static Cromosoma & AGEPosicion(int tam_poblacion);
 };
 
 

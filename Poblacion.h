@@ -9,7 +9,7 @@
 #include "utilidades.h"
 
 extern int num_evaluaciones;
-extern double prob_mutacion;
+extern double prob_mutacion_por_gen;
 
 class Poblacion {
 

@@ -10,6 +10,8 @@
 #include "geneticos.h"
 
 
+double prob_mutacion_por_gen;
+int num_evaluaciones;
 
 using namespace std;
 
@@ -25,10 +27,13 @@ int main(int argc, char * argv[]) {
     matrizDistancias = generarMatrizDistancias(archivo, subtam_cromosoma);
     tam_cromosoma = matrizDistancias.cols();
     tam_poblacion = 50;
+    prob_mutacion_por_gen = 0.1 / (double)tam_cromosoma;
+    num_evaluaciones = 0;
 
-    Cromosoma solucion = Geneticos::AGGPosicion(tam_poblacion);
 
-    cout << solucion.fitness;
+    Cromosoma solucion = Geneticos::AGEPosicion(tam_poblacion);
+    cout << solucion.fitness << endl;
+
 
 
 }

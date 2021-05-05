@@ -5,8 +5,6 @@
 #include "Poblacion.h"
 #include "random.h"
 
-int num_evaluaciones = 0;
-double prob_mutacion = 0.1/(50 * tam_cromosoma);
 
 Poblacion::Poblacion() {
 
@@ -24,10 +22,6 @@ Cromosoma Poblacion::torneoBinario(){
         int pos1 = Randint(0, cromosomas.size() - 1);
         int pos2 = Randint(0, cromosomas.size() - 1);
 
-        while (pos2 == pos1){
-            pos2 = Randint(0, cromosomas.size() - 1);
-        }
-
         Cromosoma nuevo;
 
         if (cromosomas[pos1].fitness > cromosomas[pos2].fitness)
@@ -40,7 +34,7 @@ Cromosoma Poblacion::torneoBinario(){
 
 void Poblacion::mutarCromosomas() {
 
-    int numMutaciones = prob_mutacion * cromosomas.size();
+    int numMutaciones = prob_mutacion_por_gen * cromosomas[0].genes.size() * tam_poblacion;
 
     for (int i = 0; i < numMutaciones; ++i){
 
@@ -49,7 +43,7 @@ void Poblacion::mutarCromosomas() {
         int gen_2 = Randint(0, tam_cromosoma - 1);
 
         while ((cromosomas[cromosoma_a_mutar].genes[gen_1] == cromosomas[cromosoma_a_mutar].genes[gen_2]))
-            int gen_2 = Randint(0, tam_cromosoma - 1);
+            gen_2 = Randint(0, tam_cromosoma - 1);
 
         swap(cromosomas[cromosoma_a_mutar].genes[gen_1], cromosomas[cromosoma_a_mutar].genes[gen_2]);
 

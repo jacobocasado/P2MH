@@ -47,7 +47,7 @@ double Cromosoma::calcularFitness() {
 
 double Cromosoma::calcularContribucionEn(int posicion){
 
-    double contribucion = 0;
+    double contribucion = 0.0;
 
     for (int i = 0; i < genes.size(); ++i){
         if (genes[i] == 1){
@@ -62,6 +62,7 @@ double Cromosoma::calcularContribucionEn(int posicion){
 void Cromosoma::reparar() {
 
     int numGenes = count(genes.begin(), genes.end(), 1);
+
     while (numGenes > subtam_cromosoma){
         int pos = 0;
         double mayor_contribucion = 0;
