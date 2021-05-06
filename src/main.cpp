@@ -29,9 +29,14 @@ int main(int argc, char * argv[]) {
     prob_mutacion_por_gen = 0.1 / (double)tam_cromosoma;
     num_evaluaciones = 0;
 
-
+    auto start = std::chrono::system_clock::now();
     Cromosoma solucion = Geneticos::AGGUniforme(tam_poblacion);
-    cout << solucion.fitness << endl;
+    auto end = std::chrono::system_clock::now();
+
+    chrono::duration<double> duration = end - start;
+
+    cout << solucion.fitness "," << duration.count() << endl;
+
 
 
 
